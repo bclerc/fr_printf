@@ -80,7 +80,7 @@ void ft_printf(char* text, ...)
     while (format[i])
     {
         if (format[i] == '%')
-            i = i + flags_initialsizer(ft_strsdup(&format[i], "cfbdts"), &flag);
+            i = i + flags_initialsizer(ft_strsdup(&format[i + 1], "cfbdts"), &flag);
         ft_putchar(format[i]);
         i++;
     }
