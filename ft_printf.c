@@ -20,7 +20,8 @@ int flags_destroyer(t_flag *flag)
 int flags_initialsizer(char *args, t_flag *flag)
 {
     int i;
-
+     printf("Arguments entier %s\n", args);
+    i = 0;
     while (args[i])
     {
         printf("%c", args[i]);
@@ -37,7 +38,7 @@ int flags_initialsizer(char *args, t_flag *flag)
         }
         i++;
     }
-    printf("\n=== Flags - : %d\n Flags 0 : %d \n Taille de champs : %d \n", flag->minus, flag->zero, flag->width);
+    printf("\n===\n Flags - : %d\n Flags 0 : %d \n Taille de champs : %d \n", flag->minus, flag->zero, flag->width);
     flag->args = args;
     flag->type = args[ft_strlen(args) - 1];
     function_dispatcher(flag);
