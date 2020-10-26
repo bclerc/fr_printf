@@ -21,6 +21,10 @@ int flags_initialsizer(char *args, t_flag *flag)
 {
     int i;
      printf("Arguments entier %s\n", args);
+<<<<<<< HEAD
+=======
+    i = 0;
+>>>>>>> 6a354f408b51f8b514b9ab9d6c71195546246ccc
     while (args[i])
     {
         printf("%c", args[i]);
