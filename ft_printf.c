@@ -23,6 +23,7 @@ int flags_initialsizer(char *args, t_flag *flag)
 
     while (args[i])
     {
+        printf("%c", args[i]);
         if (args[i] == '-')
             flag->minus = 1;
         if (args[i] == '0')
@@ -36,7 +37,7 @@ int flags_initialsizer(char *args, t_flag *flag)
         }
         i++;
     }
-    printf("\n Flags - : %d\n Flags 0 = %d \n Taille de champs . %d \n", flag->minus, flag->zero, flag->width);
+    printf("\n=== Flags - : %d\n Flags 0 : %d \n Taille de champs : %d \n", flag->minus, flag->zero, flag->width);
     flag->args = args;
     flag->type = args[ft_strlen(args) - 1];
     function_dispatcher(flag);
