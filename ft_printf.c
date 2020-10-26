@@ -17,11 +17,22 @@ int flags_destroyer(t_flag *flag)
     free(flag->args);
 }
 
-// PARSER DE SHLAG ICI 
 int flags_initialsizer(char *args, t_flag *flag)
 {
     int i;
-    
+
+    i++;
+    while (args[i])
+    {
+        if (args[i] == '-')
+            flag->minus = 1;
+        if (args[i] == '0')
+            flag->zero = 1;
+        if (args[i] == '*')
+            flag->width = va_arg(flag->flags, int);
+        i++;
+    }
+
     flag->args = args;
     flag->type = args[ft_strlen(args) - 1];
     function_dispatcher(flag);

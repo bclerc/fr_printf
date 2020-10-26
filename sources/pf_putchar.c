@@ -18,4 +18,5 @@ void    pf_putchar(t_flag *flag)
 
     c = va_arg(flag->flags, char);
     write (1, &c, 1);
+
 }

@@ -15,7 +15,7 @@ typedef struct s_flag
     char *args;
     char type;
     char *formats;
-    int field_size;
+    int width;
     int minus;
     int zero;
     int dot;
