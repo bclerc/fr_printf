@@ -30,9 +30,14 @@ int flags_initialsizer(char *args, t_flag *flag)
             flag->zero = 1;
         if (args[i] == '*')
             flag->width = va_arg(flag->flags, int);
+        while (ft_isdigit(args[i]) && !flag->width)
+        {
+            flag->width = flag->width + (ft_todigit(args[i]) * 10);
+            i++;
+        }
         i++;
     }
-
+    printf("\n Flags - : %d\n Flags 0 = %d \n Taille de champs . %d \n", flag->minus, flag->zero, flag->width);
     flag->args = args;
     flag->type = args[ft_strlen(args) - 1];
     function_dispatcher(flag);
@@ -86,6 +91,6 @@ int main(void)
 {
 
 
-    ft_printf("================\nBinaire : %b\n\Texte : %s\nChiffre : %d\n============", "Binaire de ce texte", "ce texte fils de ppute", 232);
+    ft_printf("Test de message  : %-50d", 12);
 
 }
