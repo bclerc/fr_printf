@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2020/10/26 16:37:26 by bclerc           ###   ########.fr       */
+/*   Updated: 2020/10/27 14:50:47 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,22 @@
 
 int flags_destroyer(t_flag *flag)
 {
+    flag->minus = 0;
+    flag->type = 0;
+    flag->width = 0;
+    flag->minus = 0;
+    flag->zero = 0;
+    flag->dot = 0;
+    flag->asterisk = 0;
     free(flag->args);
 }
 
 int flags_initialsizer(char *args, t_flag *flag)
 {
     int i;
-     printf("Arguments entier %s\n", args);
     i = 1;
     while (args[i])
     {
-        printf("%c", args[i]);
         if (args[i] == '-')
             flag->minus = 1;
         if (args[i] == '0')
@@ -36,13 +41,21 @@ int flags_initialsizer(char *args, t_flag *flag)
             flag->width = (flag->width * 10) + (args[i] - '0');
             i++;
         }
+        if (args[i] == '.')
+        {
+            if (args[i + 1] && ft_isdigit(args[i + 1]))
+            {
+                flag->dot = args[i + 1] - '0';
+                i++;
+            }
+        }
         i++;
     }
-    printf("\n===\n Flags - : %d\n Flags 0 : %d \n Taille de champs : %d \n", flag->minus, flag->zero, flag->width);
+    printf("\n===\nArguments : %s\n Flags - : %d\n Flags 0 : %d\n Précision : %d \n Taille de champs : %d \n", args, flag->minus, flag->zero, flag->dot, flag->width);
     flag->args = args;
     flag->type = args[ft_strlen(args) - 1];
     function_dispatcher(flag);
-    return (ft_strlen(args) + 1);
+    return (ft_strlen(args));
 }
 
 int function_dispatcher(t_flag *flag)
@@ -80,7 +93,7 @@ void ft_printf(char* text, ...)
     while (format[i])
     {
         if (format[i] == '%')
-            i = i + flags_initialsizer(ft_strsdup(&format[i], "cfbdts"), &flag);
+            i = i + flags_initialsizer(ft_strsdup(&format[i], "cfbdts "), &flag);
         ft_putchar(format[i]);
         i++;
     }
@@ -92,6 +105,6 @@ int main(void)
 {
 
 
-    ft_printf("Test de message  : %-012345d", 12);
+    ft_printf("Test de message  : %-23s %4.d %34.8s", "\nfils de pute \n", 20, "\npute\n");
 
 }
