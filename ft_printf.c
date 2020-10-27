@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2020/10/26 13:14:44 by bclerc           ###   ########.fr       */
+/*   Updated: 2020/10/26 16:37:26 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int flags_initialsizer(char *args, t_flag *flag)
             flag->zero = 1;
         if (args[i] == '*')
             flag->width = va_arg(flag->flags, int);
-        while (ft_isdigit(args[i]) && !flag->width)
+        while (ft_isdigit(args[i]))
         {
-            flag->width = flag->width + (ft_todigit(args[i]) * 10);
+            flag->width = (flag->width * 10) + (args[i] - '0');
             i++;
         }
         i++;
@@ -80,7 +80,7 @@ void ft_printf(char* text, ...)
     while (format[i])
     {
         if (format[i] == '%')
-            i = i + flags_initialsizer(ft_strsdup(&format[i + 1], "cfbdts"), &flag);
+            i = i + flags_initialsizer(ft_strsdup(&format[i], "cfbdts"), &flag);
         ft_putchar(format[i]);
         i++;
     }
@@ -92,6 +92,6 @@ int main(void)
 {
 
 
-    ft_printf("Test de message  : %-50d", 12);
+    ft_printf("Test de message  : %-012345d", 12);
 
 }
