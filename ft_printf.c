@@ -42,7 +42,7 @@ int flags_initialsizer(char *args, t_flag *flag)
     flag->args = args;
     flag->type = args[ft_strlen(args) - 1];
     function_dispatcher(flag);
-    return (ft_strlen(args));
+    return (ft_strlen(args) + 1);
 }
 
 int function_dispatcher(t_flag *flag)
