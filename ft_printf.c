@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2020/10/27 14:50:47 by bclerc           ###   ########.fr       */
+/*   Updated: 2020/10/27 15:47:16 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,11 @@ int flags_initialsizer(char *args, t_flag *flag)
             {
                 flag->dot = args[i + 1] - '0';
                 i++;
+            }
+            else if (args[i + 1] == '*')
+            {
+                flag->dot = va_arg(flag->flags, int);
+                i++; 
             }
         }
         i++;
@@ -105,6 +110,6 @@ int main(void)
 {
 
 
-    ft_printf("Test de message  : %-23s %4.d %34.8s", "\nfils de pute \n", 20, "\npute\n");
+    ft_printf("Test de message:%*.*s", 12, 56,"\ntest\n");
 
 }
