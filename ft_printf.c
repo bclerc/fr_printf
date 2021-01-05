@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2020/10/27 16:21:22 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/05 11:53:50 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int flags_initialsizer(char *args, t_flag *flag)
     printf("\n===\nArguments : %s\n Flags - : %d\n Flags 0 : %d\n Précision : %d \n Taille de champs : %d \n", args, flag->minus, flag->zero, flag->dot, flag->width);
     flag->args = args;
     flag->type = args[ft_strlen(args) - 1];
+	printf("Flag type : %c\n", flag->type);
     function_dispatcher(flag);
     return (ft_strlen(args));
 }
@@ -98,7 +99,7 @@ void ft_printf(char* text, ...)
     while (format[i])
     {
         if (format[i] == '%')
-            i = i + flags_initialsizer(ft_strsdup(&format[i], "cfbdts "), &flag);
+            i = i + flags_initialsizer(ft_strsdup(&format[i], "cfbdts"), &flag);
         ft_putchar(format[i]);
         i++;
     }
@@ -108,8 +109,5 @@ void ft_printf(char* text, ...)
 
 int main(void)
 {
-
-
-    ft_printf("Test de message: \n%.*s\n",3,"test");
-
+    ft_printf("Test de message: \n%b\n","Test");
 }
