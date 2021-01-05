@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/02 14:48:18 by bclerc            #+#    #+#             */
-/*   Updated: 2020/09/02 14:52:26 by bclerc           ###   ########.fr       */
+/*   Updated: 2020/10/27 16:23:48 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,11 @@ int pf_putstr(t_flag *flag)
         return (0);
     tmp = va_arg(flag->flags, char*);
     i = 0;
-    while (tmp[i])
+
+    if (flag->width)
     {
-        ft_putchar(tmp[i]);
-        i++;   
+        write(1,' ', width )
     }
+
     return (1);
 }

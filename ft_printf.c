@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2020/10/27 15:47:16 by bclerc           ###   ########.fr       */
+/*   Updated: 2020/10/27 16:21:22 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,6 @@ int main(void)
 {
 
 
-    ft_printf("Test de message:%*.*s", 12, 56,"\ntest\n");
+    ft_printf("Test de message: \n%.*s\n",3,"test");
 
 }
