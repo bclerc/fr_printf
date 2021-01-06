@@ -15,6 +15,7 @@ typedef struct s_flag
     char *args;
     char type;
     char *formats;
+	int nbrvalue;
     int width;
     int minus;
     int zero;
@@ -25,6 +26,7 @@ typedef struct s_flag
 
 int     pf_putstr(t_flag *flag);
 void    pf_putnbr(t_flag *flag);
+void	pf_putunbr(t_flag *flag);
 void    pf_putchar(t_flag *flag);
 void    pf_printbinary(t_flag *flag);
 

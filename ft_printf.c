@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/05 11:53:50 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/06 15:55:26 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,47 +21,68 @@ int flags_destroyer(t_flag *flag)
     flag->zero = 0;
     flag->dot = 0;
     flag->asterisk = 0;
-    free(flag->args);
+
 }
 
 int flags_initialsizer(char *args, t_flag *flag)
 {
+	printf("Longueur : %d", flag->width);
     int i;
     i = 1;
-    while (args[i])
-    {
-        if (args[i] == '-')
-            flag->minus = 1;
-        if (args[i] == '0')
-            flag->zero = 1;
-        if (args[i] == '*')
-            flag->width = va_arg(flag->flags, int);
-        while (ft_isdigit(args[i]))
-        {
-            flag->width = (flag->width * 10) + (args[i] - '0');
-            i++;
-        }
-        if (args[i] == '.')
-        {
-            if (args[i + 1] && ft_isdigit(args[i + 1]))
-            {
-                flag->dot = args[i + 1] - '0';
-                i++;
-            }
-            else if (args[i + 1] == '*')
-            {
-                flag->dot = va_arg(flag->flags, int);
-                i++; 
-            }
-        }
-        i++;
-    }
-    printf("\n===\nArguments : %s\n Flags - : %d\n Flags 0 : %d\n Précision : %d \n Taille de champs : %d \n", args, flag->minus, flag->zero, flag->dot, flag->width);
+	flags_destroyer(flag);
+
+
+	while (args[i])
+	{
+		while (1)
+		{
+		if (args[i] == '-')
+			flag->minus = 1;
+		else if (args[i] == '0')
+			flag->zero = 1;
+		else
+			break;
+		i++;
+		}
+		if (ft_isdigit(args[i]))
+		{	
+			while (ft_isdigit(args[i]))
+			{
+				flag->width = (flag->width * 10) + (args[i] - '0');
+				i++;
+			}
+		}
+		else if (args[i] == '*')
+		{
+		  flag->width = va_arg(flag->flags, int);
+			i++;
+		}
+		if (args[i] == '.')
+		{
+			i++;
+			if (ft_isdigit(args[i]))
+			{
+				while (ft_isdigit(args[i]))
+				{
+					flag->dot = (flag->dot * 10) + (args[i] - '0');
+					i++;
+				}
+			}
+			else if (args[i] == '*')
+			{
+				flag->dot = va_arg(flag->flags, int);
+				i++;
+			}
+		}
+		i++;
+	}
+
+    printf("\n===\nArgument : %s\n Flags - : %d\n Flags 0 : %d\n Précision : %d \n Taille de champs : %d \n", args, flag->minus, flag->zero, flag->dot, flag->width);
     flag->args = args;
     flag->type = args[ft_strlen(args) - 1];
 	printf("Flag type : %c\n", flag->type);
     function_dispatcher(flag);
-    return (ft_strlen(args));
+    return (i);
 }
 
 int function_dispatcher(t_flag *flag)
@@ -70,8 +91,10 @@ int function_dispatcher(t_flag *flag)
 
         if (flag->type == 's')
          pt = &pf_putstr;
-        else if (flag->type == 'd')
+        else if (flag->type == 'd' || flag->type == 'i')
          pt = &pf_putnbr;
+		else if (flag->type == 'u')
+         pt = &pf_putunbr;
         else if (flag->type == 'c')
          pt = &pf_putchar;
         else if (flag->type == 'b')
@@ -82,7 +105,6 @@ int function_dispatcher(t_flag *flag)
             return 0;
         }
         pt(flag);
-        flags_destroyer(flag);
         return (1);
 }
 
@@ -99,15 +121,15 @@ void ft_printf(char* text, ...)
     while (format[i])
     {
         if (format[i] == '%')
-            i = i + flags_initialsizer(ft_strsdup(&format[i], "cfbdts"), &flag);
+            i = i + flags_initialsizer(ft_strsdup(&format[i], "bcspdiuxX"), &flag);
         ft_putchar(format[i]);
         i++;
     }
     va_end(flag.flags);
-
+	free(flag.args);
 }
 
 int main(void)
 {
-    ft_printf("Test de message: \n%b\n","Test");
+    printf("%s", ft_itoa_base(980, 16));
 }
