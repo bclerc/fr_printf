@@ -6,27 +6,49 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/07 12:06:29 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/07 12:34:22 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/ft_printf.h"
+#	include "../includes/ft_printf.h"
 
-int pf_tohex(t_flag *flag)
+static void	ft_putstr_up(char *str, int maj)
+{
+	int		i;
+	char	c;
+
+	if (!str)
+		return ;
+	i = 0;
+	while (str[i])
+	{
+		if (maj)
+			write(1, &str[i], 1);
+		else
+		{
+			c = ft_tolower(str[i]);
+			write(1, &c, 1);
+		}
+		i++;
+	}
+}
+
+int			pf_tohex(t_flag *flag)
 {
 	char *hex;
 
 	if (flag->type == 'x')
 	{
-		if (!(hex = ft_itoa_base(va_arg(flag->flags, int), 16, 0)))
+		if (!(hex = ft_itoa_base(va_arg(flag->flags, int), 16)))
 			return (0);
+		ft_putstr_up(hex, 0);
 	}
-	if (flag->type == 'x')
+	if (flag->type == 'X')
 	{
-		if (!(hex = ft_itoa_base(va_arg(flag->flags, int), 16, 1)))
+		if (!(hex = ft_itoa_base(va_arg(flag->flags, int), 16)))
 			return (0);
+		ft_putstr_up(hex, 1);
 	}
-	ft_putstr(hex);
 	free(hex);
 	return (1);
 }

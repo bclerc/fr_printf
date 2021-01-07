@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/07 12:08:21 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/07 12:35:38 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ int main(int argc, char **argv)
 {
 	(void)argc;
 
-	ft_printf("%x <<<<<<", ft_atoi(argv[1]));
-	printf("\nPrinf : %x", ft_atoi(argv[1]));
+	ft_printf("%-089.5X <<<<<<", ft_atoi(argv[1]));
+	printf("\nPrinf : %X", ft_atoi(argv[1]));
 	return (0);
 }
