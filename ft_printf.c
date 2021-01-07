@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/06 15:55:26 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/07 12:08:21 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ int function_dispatcher(t_flag *flag)
          pt = &pf_putchar;
         else if (flag->type == 'b')
          pt = &pf_printbinary;
+		else if (flag->type == 'x' || flag->type == 'X')
+         pt = &pf_tohex;
         else
         {
             printf("rien pelo");
@@ -129,7 +131,11 @@ void ft_printf(char* text, ...)
 	free(flag.args);
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
-    printf("%s", ft_itoa_base(980, 16));
+	(void)argc;
+
+	ft_printf("%x <<<<<<", ft_atoi(argv[1]));
+	printf("\nPrinf : %x", ft_atoi(argv[1]));
+	return (0);
 }
