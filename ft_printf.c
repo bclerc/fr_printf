@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/07 12:35:38 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/07 15:38:15 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,8 @@ int function_dispatcher(t_flag *flag)
          pt = &pf_putchar;
         else if (flag->type == 'b')
          pt = &pf_printbinary;
+		else if (flag->type == 'p')
+         pt = &pf_address;
 		else if (flag->type == 'x' || flag->type == 'X')
          pt = &pf_tohex;
         else
@@ -135,7 +137,9 @@ int main(int argc, char **argv)
 {
 	(void)argc;
 
-	ft_printf("%-089.5X <<<<<<", ft_atoi(argv[1]));
-	printf("\nPrinf : %X", ft_atoi(argv[1]));
+	char *tamer = ft_strdup("caca");
+
+	ft_printf("%x\n", ft_atoi(argv[1]));
+
 	return (0);
 }

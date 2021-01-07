@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 12:38:17 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/06 12:39:45 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/07 15:37:08 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 
 int pf_address(t_flag *flag)
 {
+	char *tmp;
+	unsigned long long c;
+
+	c = (unsigned long long)va_arg(flag->flags, unsigned long long);
 	
-	
+	printf("%llu <<<<<<",c);
+	tmp = ft_itoa_base((unsigned long long) c, 16);
+	ft_putstr(tmp);
+	free(tmp);
 }
