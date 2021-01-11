@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/07 15:38:15 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/11 11:55:50 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int flags_initialsizer(char *args, t_flag *flag)
     int i;
     i = 1;
 	flags_destroyer(flag);
-
 
 	while (args[i])
 	{
@@ -137,9 +136,8 @@ int main(int argc, char **argv)
 {
 	(void)argc;
 
-	char *tamer = ft_strdup("caca");
-
-	ft_printf("%x\n", ft_atoi(argv[1]));
-
+	char tamer = 'a';
+	ft_printf("%p\n", &tamer);
+	printf("%p", &tamer);
 	return (0);
 }
