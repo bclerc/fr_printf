@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/02 16:01:10 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/05 11:33:51 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/12 10:17:55 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ void    pf_putchar(t_flag *flag)
     char c;
 
     c = va_arg(flag->flags, int);
+	if (flag->width && !flag->minus)
+		put_field(flag, 1);
     write (1, &c, 1);
-	
+	if (flag->width && flag->minus)
+		put_field(flag, 1);
+
 }

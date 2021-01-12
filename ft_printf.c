@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/11 11:55:50 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/12 10:20:31 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ int function_dispatcher(t_flag *flag)
          pt = &pf_tohex;
         else
         {
-            printf("rien pelo");
+            //printf("rien pelo");
             return 0;
         }
         pt(flag);
@@ -132,12 +132,8 @@ void ft_printf(char* text, ...)
 	free(flag.args);
 }
 
-int main(int argc, char **argv)
+int main(void)
 {
-	(void)argc;
-
-	char tamer = 'a';
-	ft_printf("%p\n", &tamer);
-	printf("%p", &tamer);
-	return (0);
+	ft_printf("%-157d |", 946556);
+	printf("\n%-157d |", 946556);
 }

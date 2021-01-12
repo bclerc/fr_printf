@@ -9,6 +9,7 @@ LIBS = libft
 
 SOURCES = \
 	ft_printf.c \
+	sources/utils.c \
 	sources/pf_printbinary.c \
 	sources/pf_putchar.c \
 	sources/pf_putnbr.c \

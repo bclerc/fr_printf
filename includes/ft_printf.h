@@ -24,6 +24,7 @@ typedef struct s_flag
     
 }             t_flag;
 
+void	put_field(t_flag *flag, int value_lenght);
 int     pf_putstr(t_flag *flag);
 int		pf_tohex(t_flag *flag);
 int		pf_address(t_flag *flag);

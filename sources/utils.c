@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pf_putstr.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/02 14:48:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/12 10:08:34 by bclerc           ###   ########.fr       */
+/*   Created: 2021/01/12 09:33:20 by bclerc            #+#    #+#             */
+/*   Updated: 2021/01/12 09:52:06 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
-int pf_putstr(t_flag *flag)
+void put_field(t_flag *flag, int value_lenght)
 {
-    int i;
-    char *tmp;
-    
-    if (!flag)
-        return (0);
-    tmp = va_arg(flag->flags, char*);
-    i = 0;
+	int i;
 
-	if (flag->width && !flag->minus)
-		put_field(flag, ft_strlen(tmp));
-	write(1, tmp, ft_strlen(tmp));
-	if (flag->width && flag->minus)
-		put_field(flag, ft_strlen(tmp));
-    return (1);
+	i = flag->width - value_lenght;	
+	if (flag->zero && !flag->minus)
+	{
+		while (i > 0)
+		{
+			write(1, "0", 1);
+			i--;
+		}
+	}
+	else
+	{
+		while (i > 0)
+		{
+			write(1, " ", 1);
+			i--;
+		}
+	}
 }
