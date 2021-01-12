@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/12 10:20:31 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/12 11:56:39 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int flags_destroyer(t_flag *flag)
     flag->zero = 0;
     flag->dot = 0;
     flag->asterisk = 0;
-
 }
 
 int flags_initialsizer(char *args, t_flag *flag)
@@ -134,6 +133,6 @@ void ft_printf(char* text, ...)
 
 int main(void)
 {
-	ft_printf("%-157d |", 946556);
-	printf("\n%-157d |", 946556);
+	ft_printf("%020x |", 895);
+	printf("\n%020x |", 895);
 }

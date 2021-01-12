@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/07 15:41:30 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/12 11:56:02 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,16 @@ int			pf_tohex(t_flag *flag)
 {
 	char *hex;
 
+	if (!(hex = ft_itoa_base(va_arg(flag->flags, int), 16)))
+		return (0);
+	if (flag->width && !flag->minus)
+		put_field(flag, ft_strlen(hex));
 	if (flag->type == 'x')
-	{
-		if (!(hex = ft_itoa_base(va_arg(flag->flags, int), 16)))
-			return (0);
 		ft_putstr_up(hex, 0);
-	}
 	if (flag->type == 'X')
-	{
-		if (!(hex = ft_itoa_base(va_arg(flag->flags, int), 16)))
-			return (0);
 		ft_putstr_up(hex, 1);
-	}
+	if (flag->width && flag->minus)
+		put_field(flag, ft_strlen(hex));
 	free(hex);
 	return (1);
 }
