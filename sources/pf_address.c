@@ -6,20 +6,20 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/06 12:38:17 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/12 09:40:48 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/13 17:09:58 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void print_hex(intptr_t address)
+void print_hex(t_flag *flag, intptr_t address)
 {
 	const char hex[] = "0123456789abcdef";
 	if (address < 16)
-		ft_putstr("0x");
+		pf_str(flag, "0x", 2);
 	if (address >= 16)
-		print_hex(address / 16);	
-	ft_putchar(hex[address % 16]);
+		print_hex(flag, address / 16);	
+	pf_write(flag, hex[address % 16]);
 }
 
 int pf_address(t_flag *flag)
@@ -27,7 +27,7 @@ int pf_address(t_flag *flag)
 	void		*address;
 
 	address = va_arg(flag->flags, void*);	
-	print_hex((intptr_t)address);
+	print_hex(flag, (intptr_t)address);
 
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/02 15:46:09 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/12 13:04:25 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/13 18:50:57 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ unsigned int	get_number_lenght(unsigned int i)
 	int a;
 
 	a = 1;
-	while (i > 10)
+	while (i >= 10)
 	{
 		i = i / 10;
 		a++;
@@ -53,6 +53,7 @@ void			pf_putnbr(t_flag *flag)
 	}
 	if (flag->width && !flag->minus)
 		put_field(flag, a);
+	flag->total+= a;
 	ft_putnbr(i);
 	if (flag->width && flag->minus)
 		put_field(flag, a);
@@ -67,6 +68,7 @@ void			pf_putunbr(t_flag *flag)
 	i = get_number_lenght(b);
 	if (flag->width && !flag->minus)
 		put_field(flag, i);
+	flag->total+= i;
 	ft_putunbr(b);
 	if (flag->width && flag->minus)
 		put_field(flag, i);

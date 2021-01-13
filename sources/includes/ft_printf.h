@@ -22,15 +22,12 @@ typedef struct s_flag
     int zero;
     int dot;
     int asterisk;
-	int total;
+    
 }             t_flag;
 
-
-void	pf_str(t_flag *flag, char *str, int length);
-void	pf_write(t_flag *flag, char c);
 int		ft_printf(char* text, ...);
-void	put_field(t_flag *flag, int value_length);
-void	put_field_dot(t_flag *flag, int value_length);
+void	put_field(t_flag *flag, int value_lenght);
+void	put_field_dot(t_flag *flag, int value_lenght);
 int     pf_putstr(t_flag *flag);
 int		pf_tohex(t_flag *flag);
 int		pf_address(t_flag *flag);

@@ -6,13 +6,13 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/12 11:59:07 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/13 17:06:32 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#	include "../includes/ft_printf.h"
+#include "../includes/ft_printf.h"
 
-static void	ft_putstr_up(char *str, int maj)
+static void	ft_putstr_up(t_flag *flag, char *str, int maj)
 {
 	int		i;
 	char	c;
@@ -27,7 +27,7 @@ static void	ft_putstr_up(char *str, int maj)
 		else
 		{
 			c = ft_tolower(str[i]);
-			write(1, &c, 1);
+			pf_write(flag, c);
 		}
 		i++;
 	}
@@ -37,14 +37,14 @@ int			pf_tohex(t_flag *flag)
 {
 	char *hex;
 
-	if (!(hex = ft_itoa_base(va_arg(flag->flags, int), 16)))
+	if (!(hex = ft_itoa_base(va_arg(flag->flags, unsigned int), 16)))
 		return (0);
 	if (flag->width && !flag->minus)
 		put_field(flag, ft_strlen(hex));
 	if (flag->type == 'x')
-		ft_putstr_up(hex, 0);
+		ft_putstr_up(flag, hex, 0);
 	if (flag->type == 'X')
-		ft_putstr_up(hex, 1);
+		ft_putstr_up(flag, hex, 1);
 	if (flag->width && flag->minus)
 		put_field(flag, ft_strlen(hex));
 	free(hex);

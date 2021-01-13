@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/13 18:51:15 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/13 16:15:29 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,7 @@ int flags_initialsizer(char *args, t_flag *flag)
 		}
 		else if (args[i] == '*')
 		{
-		 	flag->width = va_arg(flag->flags, int);
-			if (flag->width < 0)
-			{
-				flag->width = -flag->width;
-				flag->minus = 1;
-			}
+		 	flag->width = ft_abs(va_arg(flag->flags, int));
 			i++;
 		}
 		if (args[i] == '.')
@@ -125,9 +120,7 @@ int ft_printf(char* text, ...)
 
     t_flag flag;
     int i;
-	int total;
 
-	flag.total = 0;
     format = ft_strdup(text);
     va_start(flag.flags, text);
 
@@ -142,17 +135,10 @@ int ft_printf(char* text, ...)
 			continue;
 		}
         if (format[i])
-			pf_write(&flag, format[i]);
+			ft_putchar(format[i]);
         i++;
     }
     va_end(flag.flags);
-	total = flag.total;
 	free(flag.args);
-	return (total);
-}
-
-int main()
-{
-	ft_printf("%0*d|", 5, -15);
-	printf("\n%0*d|", 5, -15);
+	return (i);
 }

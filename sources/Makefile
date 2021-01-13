@@ -43,7 +43,7 @@ $(LIBS):
 	@printf "$(NO_COLOR)-----------------------\n\n"
 
 exe: $(OBJECTS) $(LIBS)
-	@$(CC) $(FLAGS) -fsanitize=address -I$(INCLUDES_FOLDER) -o $(NAME) $(OBJECTS) -L libft/ -lft
+	@$(CC) $(FLAGS) -I$(INCLUDES_FOLDER) -o $(NAME) $(OBJECTS) -L libft/ -lft
 	@printf "$(INFO_COLOR)$(NAME) $(NO_COLOR)successfully compiled. $(OK_COLOR)✓$(NO_COLOR)\n"
 
 
