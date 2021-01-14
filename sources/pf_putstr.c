@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/02 14:48:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/13 18:27:46 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/14 14:25:03 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ int	pf_putstr(t_flag *flag)
 	else
 		length = ft_strlen(tmp);
 	if (flag->width && !flag->minus)
-		put_field(flag, length);
+		put_field(flag, length, 1);
 	pf_str(flag, tmp, length);
 	if (flag->width && flag->minus)
-		put_field(flag, length);
+		put_field(flag, length, 1);
 	free(tmp);
 	return (1);
 }

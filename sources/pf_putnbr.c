@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/02 15:46:09 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/13 18:50:57 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/14 14:25:45 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void			pf_putnbr(t_flag *flag)
 		a++;
 	}
 	if (flag->width && !flag->minus)
-		put_field(flag, a);
+		put_field(flag, a, 1);
 	flag->total+= a;
 	ft_putnbr(i);
 	if (flag->width && flag->minus)
-		put_field(flag, a);
+		put_field(flag, a, 1);
 }
 
 void			pf_putunbr(t_flag *flag)
@@ -67,9 +67,9 @@ void			pf_putunbr(t_flag *flag)
 	b = va_arg(flag->flags, unsigned int);
 	i = get_number_lenght(b);
 	if (flag->width && !flag->minus)
-		put_field(flag, i);
+		put_field(flag, i, 1);
 	flag->total+= i;
 	ft_putunbr(b);
 	if (flag->width && flag->minus)
-		put_field(flag, i);
+		put_field(flag, i, 1);
 }

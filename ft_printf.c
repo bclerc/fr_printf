@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/13 18:51:15 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/14 16:22:55 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int function_dispatcher(t_flag *flag)
          pt = &pf_putchar;
         else if (flag->type == 'b')
          pt = &pf_printbinary;
+		else if (flag->type == '%')
+         pt = &pf_percent;
 		else if (flag->type == 'p')
          pt = (void*)&pf_address;
 		else if (flag->type == 'x' || flag->type == 'X')
@@ -136,7 +138,8 @@ int ft_printf(char* text, ...)
     {
         if (format[i] == '%')
 		{
-			str = ft_strsdup(&format[i], "bcspdiuxX");
+			i++;
+			str = ft_strsdup(&format[i], "bcspdiuxX%");
 			flags_initialsizer(str, &flag);
 			i = i + (ft_strlen(str));
 			continue;
@@ -149,10 +152,4 @@ int ft_printf(char* text, ...)
 	total = flag.total;
 	free(flag.args);
 	return (total);
-}
-
-int main()
-{
-	ft_printf("%0*d|", 5, -15);
-	printf("\n%0*d|", 5, -15);
 }

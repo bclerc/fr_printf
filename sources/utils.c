@@ -6,13 +6,13 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 09:33:20 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/13 18:28:08 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/14 16:11:48 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void put_field(t_flag *flag, int value_length)
+void put_field(t_flag *flag, int value_length, int zero)
 {
 	int i;
 
@@ -20,7 +20,7 @@ void put_field(t_flag *flag, int value_length)
 		i = flag->width;
 	else
 		i = flag->width - value_length;	
-	if (flag->zero && !flag->minus && !(value_length > flag->width))
+	if (flag->zero && !flag->minus && !(value_length > flag->width) && zero)
 	{
 		while (i > 0)
 		{
@@ -63,8 +63,8 @@ void put_field_dot(t_flag *flag, int value_length)
 {
 	int i;
 
-	i = flag->dot - value_length;	
-	if (flag->zero && !(value_length > flag->dot))
+	i = flag->precision - value_length;	
+	if (flag->zero && !(value_length > flag->precision))
 	{
 		while (i > 0)
 		{

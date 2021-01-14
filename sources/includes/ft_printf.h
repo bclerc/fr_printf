@@ -26,7 +26,7 @@ typedef struct s_flag
 }             t_flag;
 
 int		ft_printf(char* text, ...);
-void	put_field(t_flag *flag, int value_lenght);
+void	put_field(t_flag *flag, int value_lenght, int zero);
 void	put_field_dot(t_flag *flag, int value_lenght);
 int     pf_putstr(t_flag *flag);
 int		pf_tohex(t_flag *flag);

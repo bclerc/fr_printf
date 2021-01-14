@@ -12,6 +12,7 @@ SOURCES = \
 	sources/utils.c \
 	sources/pf_printbinary.c \
 	sources/pf_putchar.c \
+	sources/pf_percent.c \
 	sources/pf_putnbr.c \
 	sources/pf_putstr.c \
 	sources/pf_tohex.c \
