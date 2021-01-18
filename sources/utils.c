@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 09:33:20 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/14 16:11:48 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/15 10:41:05 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,14 @@ void pf_write(t_flag *flag, char c)
 	ft_putchar(c);
 }
 
-void put_field_dot(t_flag *flag, int value_length)
+int		pf_precision(t_flag *flag, int value_length)
 {
 	int i;
 
+	if (!flag->dot)
+		return (0);
 	i = flag->precision - value_length;	
-	if (flag->zero && !(value_length > flag->precision))
+	if (flag->dot && !((value_length) > flag->precision))
 	{
 		while (i > 0)
 		{
@@ -73,14 +75,5 @@ void put_field_dot(t_flag *flag, int value_length)
 			i--;
 		}
 	}
-	else
-	{
-		while (i > 0)
-		{
-			flag->total++;
-			write(1, " ", 1);
-			i--;
-		}
-	}
+	return (1);
 }
-

@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/07 11:56:49 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/14 16:13:59 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/18 15:07:06 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,43 +25,24 @@ static	int	get_len(long long int value)
 	return (count + 1);
 }
 
-char		*ft_itoa16(long long int value)
+char		*ft_itoa16(long long int value, char* base_str)
 {
-	static char		hex[] = "0123456789ABCDEF";
+	int				base;
 	char			*tab;
 	long long	int len;
 	
+	base = ft_strlen(base_str);
 	len = get_len(value);
 	if (!(tab = ft_strnew((len))))
 		return (NULL);
 	while (len - 1 >= 0)
 	{
-			tab[len - 1] = hex[value % 16];
-		value /= 16;
+			tab[len - 1] = base_str[value % base];
+		value /= base;
 		len--;
 	}
 	return (tab);
 }
-
-int			pf_precision(t_flag *flag, int value_length)
-{
-	int i;
-
-	if (!flag->dot)
-		return (0);
-	i = flag->precision - value_length;	
-	if (flag->dot && !((value_length) > flag->precision))
-	{
-		while (i > 0)
-		{
-			flag->total++;
-			write(1, "0", 1);
-			i--;
-		}
-	}
-	return (1);
-}
-
 
 int			pf_tohex(t_flag *flag)
 {
@@ -72,16 +53,21 @@ int			pf_tohex(t_flag *flag)
 	
 	length = 0;
 	value = va_arg(flag->flags, unsigned int);
-	if (value == 0)
+	if (flag->dot && value == 0 && flag->precision == 0)	
 		hex = ft_strdup("");
 	else
-		hex = ft_itoa16(value);
-	if (flag->precision <= ft_strlen(hex))
+	{
+		if (flag->type == 'X')
+			hex = ft_itoa16(value, "0123456789ABCDEF");
+		else	
+			hex = ft_itoa16(value, "0123456789abcdef");
+	}
+	if (flag->precision <= (int)ft_strlen(hex))
 		size = ft_strlen(hex);
 	else
-		size = (size + flag->precision);
+		size = flag->precision;
 	if (flag->width && !flag->minus)
-		put_field(flag, size, 0);
+		put_field(flag, size, ((flag->dot && flag->precision > -1)? 0 : 1));
 	pf_precision(flag, ft_strlen(hex));
 	pf_str(flag, hex, size);
 	if (flag->width && flag->minus)

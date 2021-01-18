@@ -30,7 +30,7 @@ void	pf_str(t_flag *flag, char *str, int length);
 void	pf_write(t_flag *flag, char c);
 int		ft_printf(char* text, ...);
 void	put_field(t_flag *flag, int value_length, int zero);
-void	put_field_dot(t_flag *flag, int value_length);
+int		pf_precision(t_flag *flag, int value_length);
 int     pf_putstr(t_flag *flag);
 int		pf_tohex(t_flag *flag);
 int		pf_address(t_flag *flag);
