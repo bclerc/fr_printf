@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/02 14:48:18 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/14 14:25:03 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/20 14:42:50 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,9 @@ int	pf_putstr(t_flag *flag)
 	if (!flag)
 		return (0);
 	str = va_arg(flag->flags, char*);
-	if (!str)
-	{
-		if (!(tmp = ft_strdup("(null)")))
-			return (0);
-	}
-	else
-	{
-		if (!(tmp = ft_strdup(str)))
-			return (0);
-	}
+	tmp = !str ? ft_strdup("(null)") : ft_strdup(str);
+	if (!tmp)
+		return (0);
 	i = 0;
 	length = 0;
 	if (flag->dot && ft_strlen(tmp) > flag->precision && flag->precision > -1)

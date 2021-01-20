@@ -6,20 +6,20 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 09:33:20 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/15 10:41:05 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/20 14:50:33 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-void put_field(t_flag *flag, int value_length, int zero)
+void	put_field(t_flag *flag, int value_length, int zero)
 {
 	int i;
 
 	if (!value_length)
 		i = flag->width;
 	else
-		i = flag->width - value_length;	
+		i = flag->width - value_length;
 	if (flag->zero && !flag->minus && !(value_length > flag->width) && zero)
 	{
 		while (i > 0)
@@ -40,7 +40,7 @@ void put_field(t_flag *flag, int value_length, int zero)
 	}
 }
 
-void pf_str(t_flag *flag, char *str, int length)
+void	pf_str(t_flag *flag, char *str, int length)
 {
 	int i;
 
@@ -53,7 +53,7 @@ void pf_str(t_flag *flag, char *str, int length)
 	}
 }
 
-void pf_write(t_flag *flag, char c)
+void	pf_write(t_flag *flag, char c)
 {
 	flag->total++;
 	ft_putchar(c);
@@ -65,7 +65,7 @@ int		pf_precision(t_flag *flag, int value_length)
 
 	if (!flag->dot)
 		return (0);
-	i = flag->precision - value_length;	
+	i = flag->precision - value_length;
 	if (flag->dot && !((value_length) > flag->precision))
 	{
 		while (i > 0)

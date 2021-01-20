@@ -9,8 +9,11 @@ LIBS = libft
 
 SOURCES = \
 	ft_printf.c \
+	flag_utils.c \
+	sources/pf_math_utils.c \
 	sources/utils.c \
 	sources/pf_printbinary.c \
+	sources/pf_putunbr.c \
 	sources/pf_putchar.c \
 	sources/pf_percent.c \
 	sources/pf_putnbr.c \
@@ -23,7 +26,7 @@ MAIN = ft_printf.c
 OBJECTS = $(SOURCES:.c=.o)
 
 FSANITIZE = -fsanitize=address
-FLAGS = 
+FLAGS = -g3
 CC = clang
 
 NO_COLOR =		\033[38;5;15m
@@ -54,7 +57,7 @@ $(NAME): $(OBJECTS) $(LIBS)
 
 force: $(OBJECTS)
 	@printf "$(NO_COLOR)All objects for $(INFO_COLOR)$(PROJECT_NAME) $(NO_COLOR)where successfully created.\n"
-	@$(CC) $(FLAGS) -I$(INCLUDES_FOLDER) -o $(NAME) $(OBJECTS) -L libft/ -lft
+	@$(CC) $(FLAGS) -I$(INCLUDES_FOLDER) -o $(NAME) $(OBJECTS) -L  libft/ -lft
 	@printf "$(INFO_COLOR)$(NAME) $(NO_COLOR)successfully compiled. $(OK_COLOR)✓$(NO_COLOR)\n"
 
 %.o: %.c
