@@ -1,5 +1,5 @@
-NAME = ft_printf
-PROJECT_NAME = ft_printf
+NAME = libftprintf.a
+PROJECT_NAME = libftprintf.a
 
 SOURCES_FOLDER = ./
 INCLUDES_FOLDER = includes
@@ -20,8 +20,6 @@ SOURCES = \
 	sources/pf_putstr.c \
 	sources/pf_tohex.c \
 	sources/pf_address.c
-
-MAIN = ft_printf.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -45,11 +43,6 @@ $(LIBS):
 	@printf "\n$(NO_COLOR)-------- $(INFO_COLOR)Libft $(NO_COLOR)--------\n"
 	@make -C $(@)
 	@printf "$(NO_COLOR)-----------------------\n\n"
-
-exe: $(OBJECTS) $(LIBS)
-	$(CC) $(FLAGS) -I$(INCLUDES_FOLDER) -o $(NAME) $(OBJECTS) -L libft/ -lft
-	@printf "$(INFO_COLOR)$(NAME) $(NO_COLOR)successfully compiled. $(OK_COLOR)✓$(NO_COLOR)\n"
-
 
 $(NAME): $(OBJECTS) $(LIBS)
 	@ar rcs libftprintf.a $(OBJECTS) libft/*.o
