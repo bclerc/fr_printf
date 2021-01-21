@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 16:48:21 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/20 17:00:08 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/21 14:22:12 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	set_width(t_flag *flag, char *args, int i)
 	return (i);
 }
 
-int	set_width_star(t_flag *flag, char *args, int i)
+int	set_width_star(t_flag *flag, int i)
 {
 	flag->width = va_arg(flag->flags, int);
 	if (flag->width < 0)

@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/21 14:10:26 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/21 14:22:31 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	flags_initialsizer(char *args, t_flag *flag)
 		if (ft_isdigit(args[i]))
 			i = set_width(flag, args, i);
 		else if (args[i] == '*')
-			i = set_width_star(flag, args, i);
+			i = set_width_star(flag, i);
 		if (args[i] == '.')
 			i = set_precision(flag, args, i);
 		i++;
@@ -79,7 +79,7 @@ int	get_format(t_flag *flag, int i)
 	char	*str;
 
 	if (!(str = ft_strsdup(&flag->formats[i], "bcspdiuxX%")))
-		return (0);
+		return (-1);
 	flags_initialsizer(str, flag);
 	i = i + (ft_strlen(str));
 	free(str);
@@ -92,7 +92,7 @@ int	ft_printf(char *text, ...)
 	int		i;
 
 	flag.total = 0;
-	flag.formats = ft_strdup(text);
+	flag.formats = text;
 	va_start(flag.flags, text);
 	i = 0;
 	while (flag.formats[i])
@@ -100,16 +100,14 @@ int	ft_printf(char *text, ...)
 		if (flag.formats[i] == '%')
 		{
 			i++;
-			i = get_format(&flag, i);
+			if ((i = get_format(&flag, i)) == -1)
+				break;
 			continue;
 		}
 		if (flag.formats[i])
 			pf_write(&flag, flag.formats[i]);
 		i++;
 	}
-	if (!flag.formats)
-		return (-1);
-	free(flag.formats);
 	va_end(flag.flags);
 	return (ft_abs(flag.total));
 }
