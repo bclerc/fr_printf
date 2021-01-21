@@ -6,11 +6,17 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 09:33:20 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/20 14:50:33 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/21 14:04:48 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+int		destroy(t_flag *flag)
+{
+	free(flag->formats);
+	return (0);
+}
 
 void	put_field(t_flag *flag, int value_length, int zero)
 {

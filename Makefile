@@ -26,7 +26,7 @@ MAIN = ft_printf.c
 OBJECTS = $(SOURCES:.c=.o)
 
 FSANITIZE = -fsanitize=address
-FLAGS = -g3
+FLAGS = -Werror -Wall -Wextra
 CC = clang
 
 NO_COLOR =		\033[38;5;15m
@@ -47,7 +47,7 @@ $(LIBS):
 	@printf "$(NO_COLOR)-----------------------\n\n"
 
 exe: $(OBJECTS) $(LIBS)
-	@$(CC) $(FLAGS) -I$(INCLUDES_FOLDER) -o $(NAME) $(OBJECTS) -L libft/ -lft
+	$(CC) $(FLAGS) -I$(INCLUDES_FOLDER) -o $(NAME) $(OBJECTS) -L libft/ -lft
 	@printf "$(INFO_COLOR)$(NAME) $(NO_COLOR)successfully compiled. $(OK_COLOR)✓$(NO_COLOR)\n"
 
 

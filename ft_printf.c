@@ -6,7 +6,7 @@
 /*   By: bclerc <bclerc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/08/31 18:24:55 by bclerc            #+#    #+#             */
-/*   Updated: 2021/01/20 17:00:12 by bclerc           ###   ########.fr       */
+/*   Updated: 2021/01/21 14:10:26 by bclerc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ int	flags_initialsizer(char *args, t_flag *flag)
 	return (i);
 }
 
-int	get_format(t_flag *flag, char *format, int i)
+int	get_format(t_flag *flag, int i)
 {
 	char	*str;
 
-	if (!(str = ft_strsdup(&format[i], "bcspdiuxX%")))
+	if (!(str = ft_strsdup(&flag->formats[i], "bcspdiuxX%")))
 		return (0);
 	flags_initialsizer(str, flag);
 	i = i + (ft_strlen(str));
@@ -88,27 +88,28 @@ int	get_format(t_flag *flag, char *format, int i)
 
 int	ft_printf(char *text, ...)
 {
-	char	*format;
 	t_flag	flag;
 	int		i;
 
 	flag.total = 0;
-	format = ft_strdup(text);
+	flag.formats = ft_strdup(text);
 	va_start(flag.flags, text);
 	i = 0;
-	while (format[i])
+	while (flag.formats[i])
 	{
-		if (format[i] == '%')
+		if (flag.formats[i] == '%')
 		{
 			i++;
-			i = get_format(&flag, format, i);
+			i = get_format(&flag, i);
 			continue;
 		}
-		if (format[i])
-			pf_write(&flag, format[i]);
+		if (flag.formats[i])
+			pf_write(&flag, flag.formats[i]);
 		i++;
 	}
-	free(format);
+	if (!flag.formats)
+		return (-1);
+	free(flag.formats);
 	va_end(flag.flags);
 	return (ft_abs(flag.total));
 }

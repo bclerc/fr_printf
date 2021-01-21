@@ -41,6 +41,7 @@ int				pf_precision(t_flag *flag, int value_length);
 int  		   	pf_putstr(t_flag *flag);
 int				pf_tohex(t_flag *flag);
 int				pf_address(t_flag *flag);
+int				destroy(t_flag *flag);
 void			pf_percent(t_flag *flag);
 void  			pf_putnbr(t_flag *flag);
 void			pf_putunbr(t_flag *flag);
